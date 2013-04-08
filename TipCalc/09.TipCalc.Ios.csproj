@@ -104,9 +104,13 @@
     <Reference Include="Cirrious.CrossCore">
       <HintPath>..\Dependinces\Cirrious.CrossCore.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Touch">
+      <HintPath>..\Dependinces\Cirrious.MvvmCross.Touch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -114,6 +118,9 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\TipView.cs" />
+    <Compile Include="Views\TipView.designer.cs" />
+    <Compile Include="Setup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -121,5 +128,8 @@
       <Project>{D07F732D-23DF-4189-80AB-69BFE5111C27}</Project>
       <Name>08.TipCalc.ViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\TipView.xib" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Cirrious.MvvmCross.Binding.Touch;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Cirrious.MvvmCross.Touch.Views.Presenters;
+using Cirrious.CrossCore.IoC;
+using Cirrious.MvvmCross.ViewModels;
+using Cirrious.MvvmCross.Touch.Platform;
 
 namespace TipCalc
 {
@@ -11,7 +15,7 @@ namespace TipCalc
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public partial class AppDelegate : MvxApplicationDelegate
 	{
 		// class-level declarations
 		UIWindow window;
@@ -28,10 +32,15 @@ namespace TipCalc
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
-			// If you have defined a root view controller, set it here:
-			// window.RootViewController = myViewController;
+			var presenter = new MvxTouchViewPresenter(this, window);
 			
-			// make the window visible
+			var setup = new Setup(this, presenter);
+			setup.Initialize();
+			
+			var startup = Mvx.Resolve<IMvxAppStart>();
+			startup.Start();
+			 
+
 			window.MakeKeyAndVisible ();
 			
 			return true;
