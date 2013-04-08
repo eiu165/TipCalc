@@ -15,6 +15,9 @@ namespace TipCalc.UI.Touch
 		MonoTouch.UIKit.UITextField SubTotalTextField { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UILabel GenerosityLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UISlider GenerositySlider { get; set; }
 
 		[Outlet]
@@ -25,6 +28,11 @@ namespace TipCalc.UI.Touch
 			if (SubTotalTextField != null) {
 				SubTotalTextField.Dispose ();
 				SubTotalTextField = null;
+			}
+
+			if (GenerosityLabel != null) {
+				GenerosityLabel.Dispose ();
+				GenerosityLabel = null;
 			}
 
 			if (GenerositySlider != null) {

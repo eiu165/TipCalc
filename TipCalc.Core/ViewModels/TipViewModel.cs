@@ -5,8 +5,9 @@ namespace TipCalc.Core.ViewModels
 {
     public class TipViewModel : MvxViewModel
     {
-        private readonly ICalculation _calculation;
-        private int _generosity;
+		private readonly ICalculation _calculation;
+		private int _generosity;
+		private int _generosityString;
 
         private double _subTotal;
         private double _tip;
@@ -26,17 +27,23 @@ namespace TipCalc.Core.ViewModels
                 Recalcuate();
             }
         }
+		
+		public int Generosity
+		{
+			get { return _generosity; }
+			set
+			{
+				_generosity = Limit(value);
+				RaisePropertyChanged(() => Generosity);
+				RaisePropertyChanged(() => GenerosityString);
+				Recalcuate();
+			}
+		}
 
-        public int Generosity
-        {
-            get { return _generosity; }
-            set
-            {
-                _generosity = Limit(value);
-                RaisePropertyChanged(() => Generosity);
-                Recalcuate();
-            }
-        }
+		public string GenerosityString
+		{
+			get { return _generosity + "%"; } 
+		}
 
         public double Tip
         {
@@ -50,7 +57,7 @@ namespace TipCalc.Core.ViewModels
 
         public override void Start()
         {
-            _subTotal = 100;
+            _subTotal = 219;
             _generosity = 10;
             Recalcuate();
             base.Start();
